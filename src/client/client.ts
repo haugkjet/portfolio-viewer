@@ -1,6 +1,9 @@
 import * as THREE from "three";
 
+import Stats from "three/examples/jsm/libs/stats.module";
 const scene = new THREE.Scene();
+
+//scene.background = new THREE.Color(0x4488ff);
 
 const camera = new THREE.PerspectiveCamera(
   75,
@@ -16,7 +19,7 @@ document.body.appendChild(renderer.domElement);
 
 const geometry = new THREE.BoxGeometry();
 const material = new THREE.MeshBasicMaterial({
-  color: 0x00fff0,
+  color: 0x00ff00,
   wireframe: true,
 });
 
@@ -31,11 +34,16 @@ function onWindowResize() {
   render();
 }
 
+const stats = Stats();
+document.body.appendChild(stats.dom);
+
 function animate() {
   requestAnimationFrame(animate);
 
   cube.rotation.x += 0.01;
   cube.rotation.y += 0.01;
+
+  stats.update();
 
   render();
 }
