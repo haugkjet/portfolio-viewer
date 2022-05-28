@@ -1,6 +1,7 @@
 import * as THREE from "three";
 
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import { RoundedBoxGeometry } from "three/examples/jsm/geometries/RoundedBoxGeometry.js";
 
 import Stats from "three/examples/jsm/libs/stats.module";
 const scene = new THREE.Scene();
@@ -17,11 +18,11 @@ scene.add(gridHelper);
 
 scene.add(new THREE.AxesHelper(10));
 
-const light = new THREE.PointLight(0xffffff, 3, 250);
-light.position.set(7, 10, 5);
+const light = new THREE.PointLight(0xffffff, 1, 100);
+light.position.set(12, 12, 7);
 scene.add(light);
 
-const light2 = new THREE.PointLight(0xffffff, 1.5, 100);
+const light2 = new THREE.PointLight(0xffffff, 1, 100);
 light2.position.set(-2, 5, 2);
 scene.add(light2);
 
@@ -32,8 +33,8 @@ const camera = new THREE.PerspectiveCamera(
   1000
 );
 camera.position.z = 7;
-camera.position.y = 7;
-camera.position.x = 5;
+camera.position.y = 6;
+camera.position.x = 12;
 
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -41,22 +42,22 @@ document.body.appendChild(renderer.domElement);
 
 new OrbitControls(camera, renderer.domElement);
 
-const geometry = new THREE.BoxGeometry();
+const geometry = new RoundedBoxGeometry();
 
 const planegeometry = new THREE.PlaneGeometry();
 
 const materialgreen = new THREE.MeshStandardMaterial({
   color: 0x00ff00,
   wireframe: false,
-  metalness: 0.5,
-  roughness: 0.1,
+  metalness: 0.1,
+  roughness: 0.2,
 });
 
 const materialred = new THREE.MeshStandardMaterial({
   color: 0xff0000,
   wireframe: false,
-  metalness: 0.5,
-  roughness: 0.1,
+  metalness: 0.1,
+  roughness: 0.3,
 });
 
 const materialgray = new THREE.MeshStandardMaterial({
@@ -69,8 +70,8 @@ const materialgray = new THREE.MeshStandardMaterial({
 const materialyellow = new THREE.MeshStandardMaterial({
   color: 0xffff00,
   wireframe: false,
-  metalness: 0.5,
-  roughness: 0.1,
+  metalness: 0.1,
+  roughness: 0.3,
 });
 
 const cubearray = [];
@@ -78,12 +79,12 @@ const cubearray = [];
 const xDistance = 1;
 const zDistance = 1;
 
-const cubegeometry = new THREE.BoxGeometry(0.5, 1, 0.5);
+const cubegeometry = new RoundedBoxGeometry(1, 1, 1);
 
 const xOffset = 0.25;
 
-for (let i = 0; i < 5; i++) {
-  for (let j = 0; j < 2; j++) {
+for (let i = 0; i < 10; i++) {
+  for (let j = 0; j < 1; j++) {
     const mesh = new THREE.Mesh(cubegeometry, materialgreen);
     mesh.scale.y = Math.floor(Math.random() * 6.0) + 1.0;
     if (mesh.scale.y >= 4) mesh.material = materialgreen;
