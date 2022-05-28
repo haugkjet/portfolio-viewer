@@ -5,7 +5,7 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import Stats from "three/examples/jsm/libs/stats.module";
 const scene = new THREE.Scene();
 
-//scene.background = new THREE.Color(0x4488ff);
+scene.background = new THREE.Color(0xdadada);
 
 const size = 20;
 const divisions = 20;
@@ -17,8 +17,13 @@ scene.add(gridHelper);
 
 scene.add(new THREE.AxesHelper(10));
 
-const light3 = new THREE.AmbientLight();
-scene.add(light3);
+const light = new THREE.PointLight(0xffffff, 3, 250);
+light.position.set(7, 10, 5);
+scene.add(light);
+
+const light2 = new THREE.PointLight(0xffffff, 1.5, 100);
+light2.position.set(-2, 5, 2);
+scene.add(light2);
 
 const camera = new THREE.PerspectiveCamera(
   75,
@@ -26,9 +31,9 @@ const camera = new THREE.PerspectiveCamera(
   0.1,
   1000
 );
-camera.position.z = 10;
-camera.position.y = 6;
-camera.position.x = 4;
+camera.position.z = 7;
+camera.position.y = 7;
+camera.position.x = 5;
 
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -43,26 +48,56 @@ const planegeometry = new THREE.PlaneGeometry();
 const materialgreen = new THREE.MeshStandardMaterial({
   color: 0x00ff00,
   wireframe: false,
+  metalness: 0.5,
+  roughness: 0.1,
 });
 
 const materialred = new THREE.MeshStandardMaterial({
   color: 0xff0000,
   wireframe: false,
+  metalness: 0.5,
+  roughness: 0.1,
 });
 
 const materialgray = new THREE.MeshStandardMaterial({
   color: 0x404040,
   wireframe: false,
+  metalness: 0.1,
+  roughness: 0.7,
 });
 
-const cube1 = new THREE.Mesh(geometry, materialgreen);
-scene.add(cube1);
+const materialyellow = new THREE.MeshStandardMaterial({
+  color: 0xffff00,
+  wireframe: false,
+  metalness: 0.5,
+  roughness: 0.1,
+});
 
-const cube2 = new THREE.Mesh(geometry, materialred);
-scene.add(cube2);
+const cubearray = [];
 
-const cube3 = new THREE.Mesh(geometry, materialgreen);
-scene.add(cube3);
+const xDistance = 1;
+const zDistance = 1;
+
+const cubegeometry = new THREE.BoxGeometry(0.5, 1, 0.5);
+
+const xOffset = 0.25;
+
+for (let i = 0; i < 5; i++) {
+  for (let j = 0; j < 2; j++) {
+    const mesh = new THREE.Mesh(cubegeometry, materialgreen);
+    mesh.scale.y = Math.floor(Math.random() * 6.0) + 1.0;
+    if (mesh.scale.y >= 4) mesh.material = materialgreen;
+    else if (mesh.scale.y < 4 && mesh.scale.y > 2) {
+      mesh.material = materialyellow;
+    } else mesh.material = materialred;
+
+    mesh.position.x = xDistance * i + xOffset;
+    mesh.position.z = zDistance * j;
+    mesh.position.y = mesh.scale.y / 2;
+
+    scene.add(mesh);
+  }
+}
 
 const plane = new THREE.Mesh(planegeometry, materialgray);
 scene.add(plane);
@@ -74,22 +109,6 @@ plane.scale.z = 20;
 plane.position.y = -0.05;
 
 plane.rotation.x = -1.5707;
-
-cube1.position.x = 0.5;
-cube1.position.y = 0.5;
-cube1.position.z = 0.5;
-
-cube2.position.x = 1.7;
-cube2.position.y = 1.0;
-cube2.position.z = 0.5;
-
-cube2.scale.y = 2;
-
-cube3.position.x = 2.9;
-cube3.position.y = 2;
-cube3.position.z = 0.5;
-
-cube3.scale.y = 4;
 
 window.addEventListener("resize", onWindowResize, false);
 function onWindowResize() {
