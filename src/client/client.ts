@@ -3,8 +3,30 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { RoundedBoxGeometry } from "three/examples/jsm/geometries/RoundedBoxGeometry.js";
 
+import { FontLoader } from "three/examples/jsm/loaders/FontLoader.js";
+import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry.js";
+
 import Stats from "three/examples/jsm/libs/stats.module";
 const scene = new THREE.Scene();
+
+const loader = new FontLoader();
+
+loader.load("helvetiker_regular.typeface.json", function (font) {
+  const geometry = new TextGeometry("Portfolio", {
+    font: font,
+    size: 0.8,
+    height: 0.01,
+    curveSegments: 12,
+    bevelEnabled: false,
+  });
+  const textMaterial = new THREE.MeshStandardMaterial({ color: 0x000000 });
+
+  var mesh = new THREE.Mesh(geometry, textMaterial);
+  mesh.position.set(-2, 0.01, 2.0);
+  mesh.rotation.set(-1.57, 0, 0);
+
+  scene.add(mesh);
+});
 
 scene.background = new THREE.Color(0xdadada);
 
@@ -32,7 +54,7 @@ const camera = new THREE.PerspectiveCamera(
   75,
   window.innerWidth / window.innerHeight,
   0.1,
-  50
+  1000
 );
 camera.position.z = 9;
 camera.position.y = 6;
@@ -103,7 +125,7 @@ const cubegeometry = new RoundedBoxGeometry(1, 1, 1);
 
 const xOffset = 0.25;
 
-for (let i = 0; i < 8; i++) {
+for (let i = -8; i < 8; i++) {
   for (let j = 0; j < 1; j++) {
     const mesh = new THREE.Mesh(cubegeometry, materialgreen);
     mesh.castShadow = true; //default is false
@@ -135,12 +157,6 @@ plane.scale.z = 20;
 plane.position.y = -0.01;
 
 plane.rotation.x = -1.5707;
-
-const helper = new THREE.CameraHelper(light.shadow.camera);
-scene.add(helper);
-
-const helper2 = new THREE.CameraHelper(light2.shadow.camera);
-scene.add(helper);
 
 window.addEventListener("resize", onWindowResize, false);
 function onWindowResize() {
