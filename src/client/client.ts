@@ -155,6 +155,23 @@ for (let i = -8; i < 8; i++) {
     mesh.position.z = zDistance * j;
     mesh.position.y = mesh.scale.y / 2;
 
+    loader.load("helvetiker_regular.typeface.json", function (font) {
+      const geometry = new TextGeometry("25", {
+        font: font,
+        size: 0.4,
+        height: 0.01,
+        curveSegments: 12,
+        bevelEnabled: false,
+      });
+      const textMaterial = new THREE.MeshStandardMaterial({ color: 0x000000 });
+
+      var mesh2 = new THREE.Mesh(geometry, textMaterial);
+      mesh2.position.set(-0.3, 0.5, 0.15);
+      mesh2.rotation.set(-1.57, 0, 0);
+
+      mesh.add(mesh2);
+    });
+
     scene.add(mesh);
   }
 }
