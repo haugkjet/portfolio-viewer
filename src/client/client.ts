@@ -6,6 +6,11 @@ import { RoundedBoxGeometry } from "three/examples/jsm/geometries/RoundedBoxGeom
 import { FontLoader } from "three/examples/jsm/loaders/FontLoader.js";
 import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry.js";
 
+//import {
+//  CSS2DRenderer,
+//  CSS2DObject,
+//} from "three/examples/jsm/renderers/CSS2DRenderer";
+
 import Stats from "three/examples/jsm/libs/stats.module";
 const scene = new THREE.Scene();
 
@@ -49,6 +54,16 @@ const light2 = new THREE.PointLight(0xffffff, 1, 100);
 light2.position.set(-2, 5, 2);
 light2.castShadow = false; // default false
 scene.add(light2);
+
+let index = 0;
+const btns = document.getElementById("btns") as HTMLButtonElement | null;
+if (btns)
+  btns.childNodes.forEach((btn) => {
+    btn.addEventListener("click", function handleClick(event) {
+      console.log("button clicked");
+    });
+    index++;
+  });
 
 const camera = new THREE.PerspectiveCamera(
   75,
