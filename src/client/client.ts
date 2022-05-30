@@ -6,6 +6,8 @@ import { RoundedBoxGeometry } from "three/examples/jsm/geometries/RoundedBoxGeom
 import { FontLoader } from "three/examples/jsm/loaders/FontLoader.js";
 import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry.js";
 
+import { initlight } from "./lights";
+
 //import {
 //  CSS2DRenderer,
 //  CSS2DObject,
@@ -15,6 +17,8 @@ import Stats from "three/examples/jsm/libs/stats.module";
 const scene = new THREE.Scene();
 
 const loader = new FontLoader();
+
+const lights = initlight(scene);
 
 loader.load("helvetiker_regular.typeface.json", function (font) {
   const geometry = new TextGeometry("Portfolio", {
@@ -44,16 +48,6 @@ scene.add(gridHelper);
 //gridHelper.position.x = 10;
 
 scene.add(new THREE.AxesHelper(10));
-
-const light = new THREE.PointLight(0xffffff, 1, 100);
-light.position.set(12, 12, 7);
-light.castShadow = true; // default false
-scene.add(light);
-
-const light2 = new THREE.PointLight(0xffffff, 1, 100);
-light2.position.set(-2, 5, 2);
-light2.castShadow = false; // default false
-scene.add(light2);
 
 let index = 0;
 const btns = document.getElementById("btns") as HTMLButtonElement | null;
@@ -184,7 +178,7 @@ spritey.position.set(3, 5, 2.7);
 scene.add(spritey);
 
 var spritey2 = makeTextSprite(" World ", {
-  fontsize: 15,
+  fontsize: 10,
   textColor: { r: 255, g: 255, b: 255, a: 1.0 },
 });
 spritey2.position.set(3, 5, 2.0);
@@ -257,7 +251,7 @@ function makeTextSprite(message: any, parameters: any) {
     //useScreenCoordinates: false /* TS error, need to fix*/
   });
   var sprite = new THREE.Sprite(spriteMaterial);
-  sprite.scale.set(0.5 * fontsize, 0.25 * fontsize, 0.75 * fontsize);
+  sprite.scale.set(1.5 * fontsize, 1.25 * fontsize, 1.75 * fontsize);
   return sprite;
 }
 
