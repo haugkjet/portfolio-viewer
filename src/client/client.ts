@@ -80,12 +80,16 @@ const xOffset = 0.25;
 
 const loader = new FontLoader();
 
-for (let i = -8; i < 8; i++) {
+const data = [1.5, 2, 4, 6.0, 6.1, 5, 4, 2];
+
+for (let i = -8; i < data.length; i++) {
+  //console.log(data[i]);
   for (let j = 0; j < 1; j++) {
     const mesh = new THREE.Mesh(cubegeometry, materialgreen);
     mesh.castShadow = true; //default is false
 
-    mesh.scale.y = Math.floor(Math.random() * 6.0) + 1.0;
+    mesh.scale.y = data[i];
+    //mesh.scale.y = Math.floor(Math.random() * 6.0) + 1.0;
     if (mesh.scale.y >= 4) mesh.material = materialgreen;
     else if (mesh.scale.y < 4 && mesh.scale.y > 2) {
       mesh.material = materialyellow;
@@ -96,14 +100,15 @@ for (let i = -8; i < 8; i++) {
     mesh.position.y = mesh.scale.y / 2;
 
     loader.load("helvetiker_regular.typeface.json", function (font) {
-      const geometry = new TextGeometry("25", {
+      console.log(data[i]);
+      const geometry = new TextGeometry(data[i] + "", {
         font: font,
         size: 0.4,
         height: 0.01,
         curveSegments: 12,
         bevelEnabled: false,
       });
-      const textMaterial = new THREE.MeshStandardMaterial({ color: 0x000000 });
+      const textMaterial = new THREE.MeshStandardMaterial({ color: 0xffffff });
 
       var mesh2 = new THREE.Mesh(geometry, textMaterial);
       mesh2.position.set(-0.3, 0.5, 0.15);
