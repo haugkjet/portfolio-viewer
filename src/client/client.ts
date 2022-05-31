@@ -7,6 +7,7 @@ import { FontLoader } from "three/examples/jsm/loaders/FontLoader.js";
 import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry.js";
 
 import { initlight } from "./lights";
+import { initfont3d } from "./font3d";
 
 //import {
 //  CSS2DRenderer,
@@ -14,28 +15,13 @@ import { initlight } from "./lights";
 //} from "three/examples/jsm/renderers/CSS2DRenderer";
 
 import Stats from "three/examples/jsm/libs/stats.module";
-const scene = new THREE.Scene();
 
 const loader = new FontLoader();
 
+const scene = new THREE.Scene();
+
 const lights = initlight(scene);
-
-loader.load("helvetiker_regular.typeface.json", function (font) {
-  const geometry = new TextGeometry("Portfolio", {
-    font: font,
-    size: 0.8,
-    height: 0.01,
-    curveSegments: 12,
-    bevelEnabled: false,
-  });
-  const textMaterial = new THREE.MeshStandardMaterial({ color: 0x000000 });
-
-  var mesh = new THREE.Mesh(geometry, textMaterial);
-  mesh.position.set(-2, 0.01, 2.0);
-  mesh.rotation.set(-1.57, 0, 0);
-
-  scene.add(mesh);
-});
+const font3d = initfont3d(scene);
 
 scene.background = new THREE.Color(0xdadada);
 
