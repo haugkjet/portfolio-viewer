@@ -9,6 +9,7 @@ body {
   margin: 0px;
 }
 
+/* GUI overlay */
 #btns {
   position: absolute;
   background-color: rgba(0, 0, 255, 0.1);

@@ -8,43 +8,25 @@ import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry.js";
 
 import { initlight } from "./lights";
 import { initfont3d } from "./font3d";
+import { initbillboardtext } from "./billboardtext";
+import { initgui2d } from "./gui2d";
+import { initfloor } from "./floor";
 
-//import {
-//  CSS2DRenderer,
-//  CSS2DObject,
-//} from "three/examples/jsm/renderers/CSS2DRenderer";
-
+import { initstatsandhelpers } from "./statsandhelpers";
 import Stats from "three/examples/jsm/libs/stats.module";
-
-const loader = new FontLoader();
 
 const scene = new THREE.Scene();
 
 const lights = initlight(scene);
 const font3d = initfont3d(scene);
+const billboard = initbillboardtext(scene);
+const gui2d = initgui2d();
+const statsandhelpers = initstatsandhelpers(scene);
+const floor = initfloor(scene);
 
 scene.background = new THREE.Color(0xdadada);
 
-const size = 20;
-const divisions = 20;
-
-const gridHelper = new THREE.GridHelper(size, divisions);
-scene.add(gridHelper);
-
-//gridHelper.position.x = 10;
-
-scene.add(new THREE.AxesHelper(10));
-
-let index = 0;
-const btns = document.getElementById("btns") as HTMLButtonElement | null;
-if (btns)
-  btns.childNodes.forEach((btn) => {
-    btn.addEventListener("click", function handleClick(event) {
-      console.log("button clicked");
-    });
-    index++;
-  });
-
+/* Camera */
 const camera = new THREE.PerspectiveCamera(
   75,
   window.innerWidth / window.innerHeight,
@@ -55,17 +37,17 @@ camera.position.z = 9;
 camera.position.y = 6;
 camera.position.x = -3;
 
+/* Renderer */
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-
 document.body.appendChild(renderer.domElement);
 
+/* Orbitcontrols */
 new OrbitControls(camera, renderer.domElement);
 
-const planegeometry = new THREE.PlaneGeometry();
-
+/* Styling of bars. TODO: Separate file */
 const materialgreen = new THREE.MeshStandardMaterial({
   color: 0x00ff00,
   wireframe: false,
@@ -80,13 +62,6 @@ const materialred = new THREE.MeshStandardMaterial({
   roughness: 0.5,
 });
 
-const materialgray = new THREE.MeshStandardMaterial({
-  color: 0xdadada,
-  wireframe: false,
-  metalness: 0.1,
-  roughness: 0.7,
-});
-
 const materialyellow = new THREE.MeshStandardMaterial({
   color: 0xffff00,
   wireframe: false,
@@ -94,31 +69,16 @@ const materialyellow = new THREE.MeshStandardMaterial({
   roughness: 0.3,
 });
 
-/*const normalTexture = new THREE.TextureLoader().load(
-  "Plastic_Rough_001_normal.jpg"
-);
-light.castShadow = true; // default false
-normalTexture.wrapS = THREE.RepeatWrapping;
-normalTexture.wrapT = THREE.RepeatWrapping;
-normalTexture.repeat.set(1, 1);
-
-materialgreen.normalMap = normalTexture;
-materialgreen.normalScale.set(1, 1);
-
-materialred.normalMap = normalTexture;
-materialred.normalScale.set(1, 1);
-
-materialyellow.normalMap = normalTexture;
-materialyellow.normalScale.set(1, 1);*/
-
+/* Bar logic. TODO: Separate file */
 const cubearray = [];
-
 const xDistance = 1.1;
 const zDistance = 1;
 
 const cubegeometry = new RoundedBoxGeometry(1, 1, 1);
 
 const xOffset = 0.25;
+
+const loader = new FontLoader();
 
 for (let i = -8; i < 8; i++) {
   for (let j = 0; j < 1; j++) {
@@ -156,111 +116,11 @@ for (let i = -8; i < 8; i++) {
   }
 }
 
-var spritey = makeTextSprite(" Hello ", {
-  fontsize: 15,
-  textColor: { r: 255, g: 255, b: 255, a: 1.0 },
-});
-spritey.position.set(3, 5, 2.7);
-scene.add(spritey);
-
-var spritey2 = makeTextSprite(" World ", {
-  fontsize: 10,
-  textColor: { r: 255, g: 255, b: 255, a: 1.0 },
-});
-spritey2.position.set(3, 5, 2.0);
-scene.add(spritey2);
-
-function makeTextSprite(message: any, parameters: any) {
-  if (parameters === undefined) parameters = {};
-  var fontface = parameters.hasOwnProperty("fontface")
-    ? parameters["fontface"]
-    : "Courier New";
-  var fontsize = parameters.hasOwnProperty("fontsize")
-    ? parameters["fontsize"]
-    : 18;
-  var borderThickness = parameters.hasOwnProperty("borderThickness")
-    ? parameters["borderThickness"]
-    : 4;
-  var borderColor = parameters.hasOwnProperty("borderColor")
-    ? parameters["borderColor"]
-    : { r: 0, g: 0, b: 0, a: 1.0 };
-  var backgroundColor = parameters.hasOwnProperty("backgroundColor")
-    ? parameters["backgroundColor"]
-    : { r: 0, g: 0, b: 255, a: 1.0 };
-  var textColor = parameters.hasOwnProperty("textColor")
-    ? parameters["textColor"]
-    : { r: 0, g: 0, b: 0, a: 1.0 };
-
-  var canvas = document.createElement("canvas");
-  var context = canvas.getContext("2d");
-  if (context) {
-    context.font = "Bold " + fontsize + "px " + fontface;
-    var metrics = context.measureText(message);
-    var textWidth = metrics.width;
-
-    context.fillStyle =
-      "rgba(" +
-      backgroundColor.r +
-      "," +
-      backgroundColor.g +
-      "," +
-      backgroundColor.b +
-      "," +
-      backgroundColor.a +
-      ")";
-    context.strokeStyle =
-      "rgba(" +
-      borderColor.r +
-      "," +
-      borderColor.g +
-      "," +
-      borderColor.b +
-      "," +
-      borderColor.a +
-      ")";
-    context.fillStyle =
-      "rgba(" +
-      textColor.r +
-      ", " +
-      textColor.g +
-      ", " +
-      textColor.b +
-      ", 1.0)";
-    context.fillText(message, borderThickness, fontsize + borderThickness);
-  }
-
-  var texture = new THREE.Texture(canvas);
-  texture.needsUpdate = true;
-
-  var spriteMaterial = new THREE.SpriteMaterial({
-    map: texture,
-    //useScreenCoordinates: false /* TS error, need to fix*/
-  });
-  var sprite = new THREE.Sprite(spriteMaterial);
-  sprite.scale.set(1.5 * fontsize, 1.25 * fontsize, 1.75 * fontsize);
-  return sprite;
-}
-
-const plane = new THREE.Mesh(planegeometry, materialgray);
-
-plane.receiveShadow = true;
-
-scene.add(plane);
-
-plane.scale.x = 20;
-plane.scale.y = 20;
-plane.scale.z = 20;
-
-plane.position.y = -0.01;
-
-plane.rotation.x = -1.5707;
-
 window.addEventListener("resize", onWindowResize, false);
 function onWindowResize() {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
-
   render();
 }
 
@@ -270,13 +130,7 @@ document.body.appendChild(stats.dom);
 function animate() {
   requestAnimationFrame(animate);
 
-  //cube1.rotation.x += 0.01;
-  //cube1.rotation.y += 0.01;
-  //cube2.rotation.y += 0.01;
-  //cube3.rotation.y += 0.01;
-
   stats.update();
-
   render();
 }
 
