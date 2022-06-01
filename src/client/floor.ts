@@ -25,6 +25,58 @@ function initfloor(scene: THREE.Scene) {
 
   plane.rotation.x = -1.5707;
   //return true;
+
+  /* Floor */
+  const planegeometry2 = new THREE.PlaneGeometry();
+
+  const materialgray2 = new THREE.MeshStandardMaterial({
+    color: 0xa9a9a9,
+    wireframe: false,
+    metalness: 0.1,
+    roughness: 0.7,
+  });
+
+  const plane2 = new THREE.Mesh(planegeometry, materialgray2);
+
+  plane2.receiveShadow = true;
+
+  scene.add(plane2);
+
+  plane2.scale.x = 20;
+  plane2.scale.y = 20;
+  plane2.scale.z = 20;
+
+  plane2.position.y = -0.01;
+  plane2.position.z = -9;
+
+  plane2.rotation.z = -1.5707;
+  //return true;
+
+  /* Floor */
+  const planegeometry3 = new THREE.PlaneGeometry();
+
+  const materialgray3 = new THREE.MeshStandardMaterial({
+    color: 0xa9a9a9,
+    wireframe: false,
+    metalness: 0.1,
+    roughness: 0.7,
+  });
+
+  const plane3 = new THREE.Mesh(planegeometry3, materialgray3);
+
+  plane3.receiveShadow = true;
+
+  scene.add(plane3);
+
+  plane3.scale.x = 20;
+  plane3.scale.y = 20;
+  plane3.scale.z = 20;
+
+  plane3.position.y = -0.01;
+  plane3.position.z = 0;
+  plane3.position.x = -10;
+
+  plane3.rotation.y = 1.5707;
 }
 
 export { initfloor };
