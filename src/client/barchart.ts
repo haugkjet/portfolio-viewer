@@ -3,11 +3,17 @@ import * as THREE from "three";
 import { FontLoader } from "three/examples/jsm/loaders/FontLoader.js";
 import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry.js";
 
+import { RoundedBoxGeometry } from "three/examples/jsm/geometries/RoundedBoxGeometry.js";
+
 function initbarchart(scene: THREE.Scene, mydata: number[], zoffset: number) {
   /* Floor */
   /* Styling of bars. TODO: Separate file */
   const materialgreen = new THREE.MeshStandardMaterial({
     color: 0x00ff00,
+
+    transparent: true,
+    opacity: 0.5,
+
     wireframe: false,
     metalness: 0.1,
     roughness: 0.4,
@@ -15,6 +21,7 @@ function initbarchart(scene: THREE.Scene, mydata: number[], zoffset: number) {
 
   const materialred = new THREE.MeshStandardMaterial({
     color: 0xff0000,
+
     wireframe: false,
     metalness: 0.1,
     roughness: 0.5,
@@ -22,6 +29,7 @@ function initbarchart(scene: THREE.Scene, mydata: number[], zoffset: number) {
 
   const materialyellow = new THREE.MeshStandardMaterial({
     color: 0xffff00,
+
     wireframe: false,
     metalness: 0.1,
     roughness: 0.3,
@@ -32,9 +40,9 @@ function initbarchart(scene: THREE.Scene, mydata: number[], zoffset: number) {
   const xDistance = 1.1;
   const zDistance = 1;
 
-  //const cubegeometry = new RoundedBoxGeometry(1, 1, 1);
+  const cubegeometry = new RoundedBoxGeometry(1, 1, 1);
 
-  const cubegeometry = new THREE.BoxGeometry(1, 1, 1);
+  //const cubegeometry = new THREE.BoxGeometry(1, 1, 1);
 
   const xOffset = 0.25;
 
@@ -43,6 +51,7 @@ function initbarchart(scene: THREE.Scene, mydata: number[], zoffset: number) {
   for (let i = -8; i < mydata.length; i++) {
     //console.log(data[i]);
     for (let j = 0; j < 1; j++) {
+      //const mesh = new THREE.Mesh(cubegeometry, materialgreen);
       const mesh = new THREE.Mesh(cubegeometry, materialgreen);
       mesh.castShadow = true; //default is false
 
@@ -58,10 +67,9 @@ function initbarchart(scene: THREE.Scene, mydata: number[], zoffset: number) {
       mesh.position.y = mesh.scale.y / 2;
 
       loader.load("helvetiker_regular.typeface.json", function (font) {
-        console.log(mydata[i]);
-        const geometry = new TextGeometry(mydata[i] + "", {
+        const geometry = new TextGeometry(Number(mydata[i]).toFixed(2) + "", {
           font: font,
-          size: 0.4,
+          size: 0.2,
           height: 0.01,
           curveSegments: 12,
           bevelEnabled: false,

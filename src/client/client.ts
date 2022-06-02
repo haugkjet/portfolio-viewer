@@ -1,7 +1,6 @@
 import * as THREE from "three";
 
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import { RoundedBoxGeometry } from "three/examples/jsm/geometries/RoundedBoxGeometry.js";
 
 import { initlight } from "./lights";
 import { initfont3d } from "./font3d";
@@ -58,18 +57,24 @@ const principal = 2; //staring capital
 const time = 8; // years
 const rate = 0.1; // 10 %
 const n = 1; // 1 termin / year
-const compoundInterest = (p: number, t: number, r: number, n: number) => {
+const compoundInterest = (
+  p: number,
+  t: number,
+  r: number,
+  n: number
+): number => {
   const amount = p * Math.pow(1 + r / n, n * t);
   const interest = amount - p;
-  console.log(`Amount: ${amount} Interest: ${interest}`);
+  //  console.log(`Amount: ${amount} Interest: ${interest}`);
 
   //return interest;
   return amount;
 };
 
-let amountarray: number[] = [];
+let amountarray: number[] = [0.0];
 for (let i = 0; i <= time; i++) {
-  amountarray.push(compoundInterest(principal, i, rate, n));
+  let x = compoundInterest(principal, i, rate, n);
+  amountarray.push(x);
 }
 
 //const data = [8, 9, 5, 3, 6, 6.0, 6.1, 5, 4, 2];
