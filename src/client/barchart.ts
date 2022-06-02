@@ -66,6 +66,8 @@ function initbarchart(scene: THREE.Scene, mydata: number[], zoffset: number) {
       mesh.position.z = zDistance * j + zoffset;
       mesh.position.y = mesh.scale.y / 2;
 
+      /* Text on top of each bar */
+
       loader.load("helvetiker_regular.typeface.json", function (font) {
         const geometry = new TextGeometry(Number(mydata[i]).toFixed(2) + "", {
           font: font,
@@ -75,14 +77,37 @@ function initbarchart(scene: THREE.Scene, mydata: number[], zoffset: number) {
           bevelEnabled: false,
         });
         const textMaterial = new THREE.MeshStandardMaterial({
-          color: 0xffffff,
+          color: 0x000000,
         });
 
         var mesh2 = new THREE.Mesh(geometry, textMaterial);
         mesh2.position.set(-0.3, 0.5, 0.15);
         mesh2.rotation.set(-1.57, 0, 0);
+        mesh2.scale.z = 0.001; // Trick to flatten text. Need to properly solve
 
         mesh.add(mesh2);
+      });
+
+      /* Text on bottom / front of each bar */
+
+      loader.load("helvetiker_regular.typeface.json", function (font) {
+        const geometry2 = new TextGeometry("Jan", {
+          font: font,
+          size: 0.2,
+          height: 0.01,
+          curveSegments: 12,
+          bevelEnabled: false,
+        });
+        const textMaterial = new THREE.MeshStandardMaterial({
+          color: 0x000000,
+        });
+
+        var mesh3 = new THREE.Mesh(geometry2, textMaterial);
+        mesh3.position.set(0.0, -0.5, 1.1);
+        mesh3.rotation.set(-1.57, 0, 1.57);
+        mesh3.scale.z = 0.001; // Trick to flatten text. Need to properly solve
+
+        mesh.add(mesh3);
       });
 
       scene.add(mesh);
