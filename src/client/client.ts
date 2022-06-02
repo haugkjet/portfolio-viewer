@@ -53,11 +53,35 @@ function onWindowResize() {
   render();
 }
 
+//CI = P*(1 + R/n) (nt) – P
+const principal = 2; //staring capital
+const time = 8; // years
+const rate = 0.1; // 10 %
+const n = 1; // 1 termin / year
+const compoundInterest = (p: number, t: number, r: number, n: number) => {
+  const amount = p * Math.pow(1 + r / n, n * t);
+  const interest = amount - p;
+  console.log(`Amount: ${amount} Interest: ${interest}`);
+
+  //return interest;
+  return amount;
+};
+
+let amountarray: number[] = [];
+for (let i = 0; i <= time; i++) {
+  amountarray.push(compoundInterest(principal, i, rate, n));
+}
+
+//const data = [8, 9, 5, 3, 6, 6.0, 6.1, 5, 4, 2];
+let chart = initbarchart(scene, amountarray, -8);
+
+//console.log(compoundInterest(principal, time, rate, n));
+
 const stats = Stats();
 document.body.appendChild(stats.dom);
 
-const data = [8, 9, 5, 3, 6, 6.0, 6.1, 5, 4, 2];
-let chart = initbarchart(scene, data, -8);
+//const data = [8, 9, 5, 3, 6, 6.0, 6.1, 5, 4, 2];
+//let chart = initbarchart(scene, data, -8);
 
 const data2 = [1.6, 2, 4, 6.0, 6.1, 5, 4, 2];
 let chart2 = initbarchart(scene, data2, 0);
