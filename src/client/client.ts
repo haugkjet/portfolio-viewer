@@ -88,10 +88,10 @@ document.body.appendChild(stats.dom);
 //const data = [8, 9, 5, 3, 6, 6.0, 6.1, 5, 4, 2];
 //let chart = initbarchart(scene, data, -8);
 
-const data2 = [1.6, 2, 4, 6.0, 6.1, 5, 4, 2];
+const data2 = [1.6, 2, 4, -3.0, -4.1, 5, 4, 2];
 let chart2 = initbarchart(scene, data2, 0);
 
-const data3 = [0.14, 0.11, 0.09, 0.13, 3.2, 2.1];
+const data3 = [0.24, 0.31, -0.09, 0.13, -3.2, 2.1];
 let chart3 = initbarchart(scene, data3, 7);
 
 function animate() {

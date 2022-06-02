@@ -81,8 +81,14 @@ function initbarchart(scene: THREE.Scene, mydata: number[], zoffset: number) {
         });
 
         var mesh2 = new THREE.Mesh(geometry, textMaterial);
-        mesh2.position.set(-0.3, 0.5, 0.15);
-        mesh2.rotation.set(-1.57, 0, 0);
+        if (mydata[i] >= 0) {
+          mesh2.position.set(-0.3, 0.5, 0.15);
+          mesh2.rotation.set(-1.57, 0, 0);
+        } else {
+          mesh2.position.set(-0.3, -0.51, 0.15);
+          mesh2.rotation.set(-1.57, 0, 0);
+        }
+
         mesh2.scale.z = 0.001; // Trick to flatten text. Need to properly solve
 
         mesh.add(mesh2);

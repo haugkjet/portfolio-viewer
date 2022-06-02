@@ -21,7 +21,7 @@ function initfloor(scene: THREE.Scene) {
   plane.scale.y = 20;
   plane.scale.z = 20;
 
-  plane.position.y = -0.01;
+  plane.position.y = -10;
 
   plane.rotation.x = -1.5707;
   //return true;
