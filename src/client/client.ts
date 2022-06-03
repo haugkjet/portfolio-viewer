@@ -91,7 +91,16 @@ document.body.appendChild(stats.dom);
 const data2 = [1.6, 2, 4, -3.0, -4.1, 5, 4, 2];
 let chart2 = initbarchart(scene, data2, 0);
 
-const data3 = [0.24, 0.31, -0.09, 0.13, -3.2, 2.1];
+const data21 = [1.6, 2, 4, 3.0, -4.1, 5, 4, 2];
+let chart21 = initbarchart(scene, data21, -6);
+
+const data22 = [1.6, 2, 4, -3.0, 4.1, 5, 4, 2];
+let chart22 = initbarchart(scene, data22, -4);
+
+const data23 = [1.6, 2, 4, 3.0, -4.1, 5, 4, 2];
+let chart23 = initbarchart(scene, data23, 0 - 2);
+
+const data3 = [0.24, 0.31, 0.09, 0.13, -3.2, 2.1];
 let chart3 = initbarchart(scene, data3, 7);
 
 function animate() {
