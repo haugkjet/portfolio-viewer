@@ -16,8 +16,8 @@ const scene = new THREE.Scene();
 
 const lights = initlight(scene);
 const font3d = initfont3d(scene);
-const billboard = initbillboardtext(scene);
-const gui2d = initgui2d();
+//const billboard = initbillboardtext(scene);
+//const gui2d = initgui2d();
 const statsandhelpers = initstatsandhelpers(scene);
 const floor = initfloor(scene);
 
@@ -35,7 +35,8 @@ camera.position.y = 6;
 camera.position.x = -3;
 
 /* Renderer */
-const renderer = new THREE.WebGLRenderer({ antialias: true });
+const canvas = document.querySelector("#c") as HTMLCanvasElement;
+const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
@@ -110,8 +111,8 @@ let chart = initbarchart(scene, amountarray, -8);
 
 //console.log(compoundInterest(principal, time, rate, n));
 
-const stats = Stats();
-document.body.appendChild(stats.dom);
+//const stats = Stats();
+//document.body.appendChild(stats.dom);
 
 //const data = [8, 9, 5, 3, 6, 6.0, 6.1, 5, 4, 2];
 //let chart = initbarchart(scene, data, -8);
@@ -134,11 +135,38 @@ let chart3 = initbarchart(scene, data3, 7);
 function animate() {
   requestAnimationFrame(animate);
 
-  stats.update();
+  //stats.update();
   render();
 }
 
+const tempV = new THREE.Vector3();
+
 function render() {
+  // get the position of the center of the cube
+  cubes.forEach((cubeInfo, ndx) => {
+    const { cube, elem } = cubeInfo;
+    const speed = 1 + ndx * 0.1;
+    const rot = time * speed;
+    cube.rotation.x = rot;
+    cube.rotation.y = rot;
+
+    // get the position of the center of the cube
+    cube.updateWorldMatrix(true, false);
+    cube.getWorldPosition(tempV);
+
+    // get the normalized screen coordinate of that position
+    // x and y will be in the -1 to +1 range with x = -1 being
+    // on the left and y = -1 being on the bottom
+    tempV.project(camera);
+
+    // convert the normalized position to CSS coordinates
+    const x = (tempV.x * 0.5 + 0.5) * canvas.clientWidth;
+    const y = (tempV.y * -0.5 + 0.5) * canvas.clientHeight;
+
+    // move the elem to that position
+    elem.style.transform = `translate(-50%, -50%) translate(${x}px,${y}px)`;
+  });
+
   renderer.render(scene, camera);
 }
 
