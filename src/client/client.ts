@@ -52,6 +52,34 @@ function onWindowResize() {
   render();
 }
 
+const boxWidth = 1;
+const boxHeight = 1;
+const boxDepth = 1;
+const geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth);
+
+const labelContainerElem = document.querySelector("#labels");
+
+function makeInstance(geometry: any, color: any, x: any, name: any) {
+  const material = new THREE.MeshPhongMaterial({ color });
+
+  const cube = new THREE.Mesh(geometry, material);
+  scene.add(cube);
+
+  cube.position.x = x + 10;
+
+  const elem = document.createElement("div");
+  elem.textContent = name;
+  if (labelContainerElem) labelContainerElem.appendChild(elem);
+
+  return { cube, elem };
+}
+
+const cubes = [
+  makeInstance(geometry, 0x44aa88, 0, "Aqua"),
+  makeInstance(geometry, 0x8844aa, -2, "Purple"),
+  makeInstance(geometry, 0xaa8844, 2, "Gold"),
+];
+
 //CI = P*(1 + R/n) (nt) – P
 const principal = 2; //staring capital
 const time = 8; // years
