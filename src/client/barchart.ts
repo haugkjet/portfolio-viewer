@@ -77,7 +77,8 @@ function initbarchart(scene: THREE.Scene, mydata: number[], zoffset: number) {
           bevelEnabled: false,
         });
         const textMaterial = new THREE.MeshStandardMaterial({
-          color: 0x000000,
+          //color: 0x000000, //Black
+          color: 0xffffff, //Light
         });
 
         var mesh2 = new THREE.Mesh(geometry, textMaterial);
@@ -105,7 +106,8 @@ function initbarchart(scene: THREE.Scene, mydata: number[], zoffset: number) {
           bevelEnabled: false,
         });
         const textMaterial = new THREE.MeshStandardMaterial({
-          color: 0x000000,
+          //color: 0x000000, //Black
+          color: 0xffffff, //Light
         });
 
         var mesh3 = new THREE.Mesh(geometry2, textMaterial);

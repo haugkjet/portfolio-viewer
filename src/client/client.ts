@@ -21,7 +21,11 @@ const font3d = initfont3d(scene);
 const statsandhelpers = initstatsandhelpers(scene);
 const floor = initfloor(scene);
 
+//Light theme
 scene.background = new THREE.Color(0xdadada);
+
+//Dark theme
+scene.background = new THREE.Color(0x222222);
 
 /* Camera */
 const camera = new THREE.PerspectiveCamera(

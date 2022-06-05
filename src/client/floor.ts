@@ -5,7 +5,8 @@ function initfloor(scene: THREE.Scene) {
   const planegeometry = new THREE.PlaneGeometry();
 
   const materialgray = new THREE.MeshStandardMaterial({
-    color: 0xdadada,
+    //color: 0xa9a9a9, //Light
+    color: 0x111111, //Dark
     wireframe: false,
     metalness: 0.1,
     roughness: 0.7,
@@ -30,7 +31,8 @@ function initfloor(scene: THREE.Scene) {
   const planegeometry2 = new THREE.PlaneGeometry();
 
   const materialgray2 = new THREE.MeshStandardMaterial({
-    color: 0xa9a9a9,
+    //color: 0xa9a9a9, //Light
+    color: 0xa111111,
     wireframe: false,
     metalness: 0.1,
     roughness: 0.7,
@@ -56,7 +58,8 @@ function initfloor(scene: THREE.Scene) {
   const planegeometry3 = new THREE.PlaneGeometry();
 
   const materialgray3 = new THREE.MeshStandardMaterial({
-    color: 0xa9a9a9,
+    //color: 0xa9a9a9, //Light
+    color: 0xa111111, // Dark
     wireframe: false,
     metalness: 0.1,
     roughness: 0.7,

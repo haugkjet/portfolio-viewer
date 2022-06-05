@@ -14,7 +14,10 @@ function initfont3d(scene: THREE.Scene) {
       curveSegments: 12,
       bevelEnabled: false,
     });
-    const textMaterial = new THREE.MeshStandardMaterial({ color: 0x000000 });
+    const textMaterial = new THREE.MeshStandardMaterial({
+      //color: 0x000000, //Black
+      color: 0xffffff,
+    }); //Light });
 
     var mesh = new THREE.Mesh(geometry, textMaterial);
     mesh.position.set(-2, 0.01, 2.0);
