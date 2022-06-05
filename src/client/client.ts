@@ -110,6 +110,23 @@ for (let i = 0; i <= time; i++) {
   amountarray.push(x);
 }
 
+const lod = new THREE.LOD();
+
+//Create spheres with 3 levels of detail and create new LOD levels for them
+for (let i = 0; i < 5; i++) {
+  const material = new THREE.MeshPhongMaterial({ color: 0xffffff });
+
+  const geometry = new THREE.BoxGeometry(5 - i, 2, 2);
+
+  const mesh = new THREE.Mesh(geometry, material);
+
+  mesh.position.x = -5;
+
+  lod.addLevel(mesh, i * 5);
+}
+
+scene.add(lod);
+
 //const data = [8, 9, 5, 3, 6, 6.0, 6.1, 5, 4, 2];
 let chart = initbarchart(scene, amountarray, -8);
 
