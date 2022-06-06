@@ -9,12 +9,18 @@ const lod = new THREE.LOD();
 
 function initfont3d(scene: THREE.Scene) {
   const loader = new FontLoader();
-  const words = ["aaa", "bbbbbbbbbbbbb", "ccccc", "ddd", "e"];
+  const words = [
+    "Name\nAdress\nZip\nCode\nMoreInfo",
+    "Name\nAdress\nZip\nCode\n",
+    "Name\nLastName",
+    "Abb",
+    "NO",
+  ];
   for (let i = 0; i < 5; i++) {
     loader.load("helvetiker_regular.typeface.json", function (font) {
       const geometry2 = new TextGeometry(words[i], {
         font: font,
-        size: 0.3 * i,
+        size: 0.3 * i * 0.5,
         height: 0.01,
         curveSegments: 12,
         bevelEnabled: false,
@@ -25,7 +31,7 @@ function initfont3d(scene: THREE.Scene) {
       }); //Light });
 
       var mesh = new THREE.Mesh(geometry2, textMaterial);
-      mesh.position.set(-2, 1.0, 0.0);
+      mesh.position.set(-2 + i * 0.4, 1.0, 0.0);
       mesh.rotation.set(-1.57, 0, 0);
 
       const material = new THREE.MeshPhongMaterial({ color: 0xabcde });
