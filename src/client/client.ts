@@ -65,7 +65,7 @@ const geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth);
 const labelContainerElem = document.querySelector("#labels");
 
 function makeInstance(geometry: any, color: any, x: any, name: any) {
-  const material = new THREE.MeshPhongMaterial({ color });
+  const material = new THREE.MeshStandardMaterial({ color });
 
   const cube = new THREE.Mesh(geometry, material);
   scene.add(cube);
@@ -115,8 +115,8 @@ let chart = initbarchart(scene, amountarray, -8);
 
 //console.log(compoundInterest(principal, time, rate, n));
 
-//const stats = Stats();
-//document.body.appendChild(stats.dom);
+const stats = Stats();
+document.body.appendChild(stats.dom);
 
 //const data = [8, 9, 5, 3, 6, 6.0, 6.1, 5, 4, 2];
 //let chart = initbarchart(scene, data, -8);
@@ -139,18 +139,20 @@ let chart3 = initbarchart(scene, data3, 7);
 function animate() {
   requestAnimationFrame(animate);
 
-  //stats.update();
+  stats.update();
   render();
 }
 
 const tempV = new THREE.Vector3();
+let time2 = 1;
 
 function render() {
   // get the position of the center of the cube
   cubes.forEach((cubeInfo, ndx) => {
+    time2 += 0.0005;
     const { cube, elem } = cubeInfo;
     const speed = 1 + ndx * 0.1;
-    const rot = time * speed;
+    const rot = time2 * speed;
     cube.rotation.x = rot;
     cube.rotation.y = rot;
 
