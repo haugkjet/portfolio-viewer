@@ -9,10 +9,10 @@ function initbarchart(scene: THREE.Scene, mydata: number[], zoffset: number) {
   /* Floor */
   /* Styling of bars. TODO: Separate file */
   const materialgreen = new THREE.MeshStandardMaterial({
-    color: 0x00ff00,
+    color: 0x0016ee,
 
     transparent: true,
-    opacity: 0.5,
+    opacity: 0.8,
 
     wireframe: false,
     metalness: 0.1,
@@ -20,7 +20,9 @@ function initbarchart(scene: THREE.Scene, mydata: number[], zoffset: number) {
   });
 
   const materialred = new THREE.MeshStandardMaterial({
-    color: 0xff0000,
+    color: 0x7700a6,
+    transparent: true,
+    opacity: 0.8,
 
     wireframe: false,
     metalness: 0.1,
@@ -28,7 +30,9 @@ function initbarchart(scene: THREE.Scene, mydata: number[], zoffset: number) {
   });
 
   const materialyellow = new THREE.MeshStandardMaterial({
-    color: 0xffff00,
+    color: 0xdefe47,
+    transparent: true,
+    opacity: 0.8,
 
     wireframe: false,
     metalness: 0.1,
