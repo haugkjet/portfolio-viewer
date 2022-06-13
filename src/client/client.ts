@@ -1,6 +1,7 @@
 import * as THREE from "three";
 
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
 import { initlight } from "./lights";
 import { initfont3d } from "./font3d";
@@ -48,6 +49,34 @@ document.body.appendChild(renderer.domElement);
 
 /* Orbitcontrols */
 new OrbitControls(camera, renderer.domElement);
+
+const loader = new GLTFLoader();
+loader.load(
+  "models/test2.glb",
+  function (gltf) {
+    // gltf.scene.traverse(function (child) {
+    //     if ((child as THREE.Mesh).isMesh) {
+    //         const m = (child as THREE.Mesh)
+    //         m.receiveShadow = true
+    //         m.castShadow = true
+    //     }
+    //     if (((child as THREE.Light)).isLight) {
+    //         const l = (child as THREE.Light)
+    //         l.castShadow = true
+    //         l.shadow.bias = -.003
+    //         l.shadow.mapSize.width = 2048
+    //         l.shadow.mapSize.height = 2048
+    //     }
+    // })
+    scene.add(gltf.scene);
+  },
+  (xhr) => {
+    console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
+  },
+  (error) => {
+    console.log(error);
+  }
+);
 
 window.addEventListener("resize", onWindowResize, false);
 function onWindowResize() {
