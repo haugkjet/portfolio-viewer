@@ -54,21 +54,23 @@ const loader = new GLTFLoader();
 loader.load(
   "models/test2.glb",
   function (gltf) {
-    // gltf.scene.traverse(function (child) {
-    //     if ((child as THREE.Mesh).isMesh) {
-    //         const m = (child as THREE.Mesh)
-    //         m.receiveShadow = true
-    //         m.castShadow = true
-    //     }
-    //     if (((child as THREE.Light)).isLight) {
-    //         const l = (child as THREE.Light)
-    //         l.castShadow = true
-    //         l.shadow.bias = -.003
-    //         l.shadow.mapSize.width = 2048
-    //         l.shadow.mapSize.height = 2048
-    //     }
-    // })
+    /* gltf.scene.traverse(function (child) {
+      if ((child as THREE.Mesh).isMesh) {
+        const m = child as THREE.Mesh;
+        m.receiveShadow = true;
+        m.castShadow = true;
+      }
+      if ((child as THREE.Light).isLight) {
+        const l = child as THREE.Light;
+        l.castShadow = true;
+        l.shadow.bias = -0.003;
+        l.shadow.mapSize.width = 2048;
+        l.shadow.mapSize.height = 2048;
+      }
+    });*/
     scene.add(gltf.scene);
+    gltf.scene.position.z = -1.5;
+    gltf.scene.position.x = -1.5;
   },
   (xhr) => {
     console.log((xhr.loaded / xhr.total) * 100 + "% loaded");

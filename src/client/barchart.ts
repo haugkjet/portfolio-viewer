@@ -11,7 +11,7 @@ function initbarchart(scene: THREE.Scene, mydata: number[], zoffset: number) {
   const materialgreen = new THREE.MeshStandardMaterial({
     color: 0x0016ee,
 
-    transparent: true,
+    transparent: false,
     opacity: 0.8,
 
     wireframe: false,
@@ -21,7 +21,7 @@ function initbarchart(scene: THREE.Scene, mydata: number[], zoffset: number) {
 
   const materialred = new THREE.MeshStandardMaterial({
     color: 0x7700a6,
-    transparent: true,
+    transparent: false,
     opacity: 0.8,
 
     wireframe: false,
@@ -31,7 +31,7 @@ function initbarchart(scene: THREE.Scene, mydata: number[], zoffset: number) {
 
   const materialyellow = new THREE.MeshStandardMaterial({
     color: 0xdefe47,
-    transparent: true,
+    transparent: false,
     opacity: 0.8,
 
     wireframe: false,
