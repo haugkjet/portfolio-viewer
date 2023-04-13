@@ -13,7 +13,7 @@ function initstatsandhelpers(scene: THREE.Scene) {
     "#00b3fe"
   );
 
-  scene.add(gridHelper);
+  //scene.add(gridHelper);
 
   const gridHelper2 = new THREE.GridHelper(
     size,
@@ -21,7 +21,7 @@ function initstatsandhelpers(scene: THREE.Scene) {
     "#fe00fe",
     "#fe00fe"
   );
-  scene.add(gridHelper2);
+  //scene.add(gridHelper2);
 
   gridHelper2.position.z = -8.9;
   gridHelper2.rotation.x = 1.57;
@@ -32,11 +32,11 @@ function initstatsandhelpers(scene: THREE.Scene) {
     "#fe00fe",
     "#fe00fe"
   );
-  scene.add(gridHelper3);
-  gridHelper3.position.x = -9.9;
+  //scene.add(gridHelper3);
+  gridHelper3.position.x = -1;
   gridHelper3.rotation.z = 1.57;
 
-  scene.add(new THREE.AxesHelper(10));
+  //scene.add(new THREE.AxesHelper(10));
 }
 
 export { initstatsandhelpers };

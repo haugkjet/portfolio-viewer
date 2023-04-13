@@ -16,7 +16,7 @@ import Stats from "three/examples/jsm/libs/stats.module";
 const scene = new THREE.Scene();
 
 const lights = initlight(scene);
-const font3d = initfont3d(scene);
+//const font3d = initfont3d(scene);
 //const billboard = initbillboardtext(scene);
 //const gui2d = initgui2d();
 const statsandhelpers = initstatsandhelpers(scene);
@@ -26,7 +26,7 @@ const floor = initfloor(scene);
 scene.background = new THREE.Color(0xdadada);
 
 //Dark theme
-scene.background = new THREE.Color(0x222222);
+//scene.background = new THREE.Color(0x222222);
 
 /* Camera */
 const camera = new THREE.PerspectiveCamera(
@@ -35,9 +35,11 @@ const camera = new THREE.PerspectiveCamera(
   0.1,
   1000
 );
-camera.position.z = 9;
-camera.position.y = 6;
-camera.position.x = -3;
+camera.position.z = 10;
+camera.position.y = 10;
+camera.position.x = 12;
+
+camera.lookAt(10, 10, 10);
 
 /* Renderer */
 const canvas = document.querySelector("#c") as HTMLCanvasElement;
@@ -50,11 +52,11 @@ document.body.appendChild(renderer.domElement);
 /* Orbitcontrols */
 new OrbitControls(camera, renderer.domElement);
 
-const loader = new GLTFLoader();
+/*const loader = new GLTFLoader();
 loader.load(
   "models/test2.glb",
-  function (gltf) {
-    /* gltf.scene.traverse(function (child) {
+  function (gltf) {*/
+/* gltf.scene.traverse(function (child) {
       if ((child as THREE.Mesh).isMesh) {
         const m = child as THREE.Mesh;
         m.receiveShadow = true;
@@ -68,7 +70,7 @@ loader.load(
         l.shadow.mapSize.height = 2048;
       }
     });*/
-    scene.add(gltf.scene);
+/*    scene.add(gltf.scene);
     gltf.scene.position.z = -1.5;
     gltf.scene.position.x = -1.5;
   },
@@ -78,7 +80,7 @@ loader.load(
   (error) => {
     console.log(error);
   }
-);
+);*/
 
 window.addEventListener("resize", onWindowResize, false);
 function onWindowResize() {
@@ -110,15 +112,15 @@ function makeInstance(geometry: any, color: any, x: any, name: any) {
   return { cube, elem };
 }
 
-const cubes = [
+/*const cubes = [
   makeInstance(geometry, 0x44aa88, 0, "Aqua"),
   makeInstance(geometry, 0x8844aa, -2, "Purple"),
   makeInstance(geometry, 0xaa8844, 2, "Gold"),
-];
+];*/
 
 //CI = P*(1 + R/n) (nt) – P
 const principal = 2; //staring capital
-const time = 8; // years
+const time = 12; // years
 const rate = 0.1; // 10 %
 const n = 1; // 1 termin / year
 const compoundInterest = (
@@ -142,7 +144,7 @@ for (let i = 0; i <= time; i++) {
 }
 
 //const data = [8, 9, 5, 3, 6, 6.0, 6.1, 5, 4, 2];
-let chart = initbarchart(scene, amountarray, -8);
+let chart = initbarchart(scene, amountarray, -2);
 
 //console.log(compoundInterest(principal, time, rate, n));
 
@@ -152,20 +154,20 @@ document.body.appendChild(stats.dom);
 //const data = [8, 9, 5, 3, 6, 6.0, 6.1, 5, 4, 2];
 //let chart = initbarchart(scene, data, -8);
 
-const data2 = [1.6, 2, 4, -3.0, -4.1, 5, 4, 2];
-let chart2 = initbarchart(scene, data2, 0);
+//const data2 = [1.6, 2, 4, -3.0, -4.1, 5, 4, 2];
+//let chart2 = initbarchart(scene, data2, 0);
 
-const data21 = [1.6, 2, 4, 3.0, -4.1, 5, 4, 2];
-let chart21 = initbarchart(scene, data21, -6);
+//const data21 = [1.6, 2, 4, 3.0, -4.1, 5, 4, 2];
+//let chart21 = initbarchart(scene, data21, -6);
 
-const data22 = [1.6, 2, 4, -3.0, 4.1, 5, 4, 2];
-let chart22 = initbarchart(scene, data22, -4);
+//const data22 = [1.6, 2, 4, -3.0, 4.1, 5, 4, 2];
+//let chart22 = initbarchart(scene, data22, -4);
 
-const data23 = [1.6, 2, 4, 3.0, -4.1, 5, 4, 2];
-let chart23 = initbarchart(scene, data23, 0 - 2);
+//const data23 = [1.6, 2, 4, 3.0, -4.1, 5, 4, 2];
+//let chart23 = initbarchart(scene, data23, 0 - 2);
 
-const data3 = [0.24, 0.31, 0.09, 0.13, -3.2, 2.1];
-let chart3 = initbarchart(scene, data3, 7);
+//const data3 = [0.24, 0.31, 0.09, 0.13, -3.2, 2.1];
+//let chart3 = initbarchart(scene, data3, 7);
 
 function animate() {
   requestAnimationFrame(animate);
@@ -179,7 +181,7 @@ let time2 = 1;
 
 function render() {
   // get the position of the center of the cube
-  cubes.forEach((cubeInfo, ndx) => {
+  /*cubes.forEach((cubeInfo, ndx) => {
     time2 += 0.0005;
     const { cube, elem } = cubeInfo;
     const speed = 1 + ndx * 0.1;
@@ -202,7 +204,7 @@ function render() {
 
     // move the elem to that position
     elem.style.transform = `translate(-50%, -50%) translate(${x}px,${y}px)`;
-  });
+  });*/
 
   renderer.render(scene, camera);
 }
