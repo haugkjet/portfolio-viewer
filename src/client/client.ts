@@ -112,6 +112,96 @@ function makeInstance(geometry: any, color: any, x: any, name: any) {
   return { cube, elem };
 }
 
+let shape = new THREE.Shape();
+let angleStep = Math.PI * 0.5;
+let radius = 0.1;
+
+shape.absarc(0.5, 0.5, radius, angleStep * 0, angleStep * 1, false);
+shape.absarc(-0.5, 0.5, radius, angleStep * 1, angleStep * 2, false);
+shape.absarc(-0.5, -0.5, radius, angleStep * 2, angleStep * 3, false);
+shape.absarc(0.5, -0.5, radius, angleStep * 3, angleStep * 4, false);
+
+const loader = new THREE.CubeTextureLoader();
+loader.setPath("https://threejs.org/examples/textures/cube/pisa/");
+
+const textureCube = loader.load([
+  "px.png",
+  "nx.png",
+  "py.png",
+  "ny.png",
+  "pz.png",
+  "nz.png",
+]);
+
+let g = new THREE.ExtrudeGeometry(shape, {
+  depth: 5,
+  bevelEnabled: true,
+  bevelThickness: 0.05,
+  bevelSize: 0.05,
+  bevelSegments: 20,
+  curveSegments: 20,
+});
+g.center();
+g.rotateX(Math.PI * -0.5);
+
+let m = new THREE.MeshStandardMaterial({
+  color: "green",
+  envMap: textureCube,
+  metalness: 0,
+  roughness: 0.1,
+});
+let o = new THREE.Mesh(g, m);
+scene.add(o);
+
+let m2 = new THREE.MeshStandardMaterial({
+  color: "blue",
+  envMap: textureCube,
+  metalness: 0,
+  roughness: 0.1,
+});
+let o2 = new THREE.Mesh(g, m2);
+scene.add(o2);
+o2.position.x = 1.5;
+
+let m3 = new THREE.MeshStandardMaterial({
+  color: "yellow",
+  envMap: textureCube,
+  metalness: 0,
+  roughness: 0.1,
+});
+let o3 = new THREE.Mesh(g, m3);
+scene.add(o3);
+o3.position.x = 3;
+
+let m4 = new THREE.MeshStandardMaterial({
+  color: "purple",
+  envMap: textureCube,
+  metalness: 0,
+  roughness: 0.1,
+});
+let o4 = new THREE.Mesh(g, m4);
+scene.add(o4);
+o4.position.x = 4.5;
+
+let m5 = new THREE.MeshStandardMaterial({
+  color: "red",
+  envMap: textureCube,
+  metalness: 0,
+  roughness: 0.1,
+});
+let o5 = new THREE.Mesh(g, m5);
+scene.add(o5);
+o5.position.x = 6;
+
+let m6 = new THREE.MeshStandardMaterial({
+  color: "orange",
+  envMap: textureCube,
+  metalness: 0,
+  roughness: 0.1,
+});
+let o6 = new THREE.Mesh(g, m6);
+scene.add(o6);
+o6.position.x = 7.5;
 /*const cubes = [
   makeInstance(geometry, 0x44aa88, 0, "Aqua"),
   makeInstance(geometry, 0x8844aa, -2, "Purple"),
