@@ -35,11 +35,12 @@ const camera = new THREE.PerspectiveCamera(
   0.1,
   1000
 );
-camera.position.z = 11;
-camera.position.y = 10;
+
+camera.position.z = 9;
+camera.position.y = 2;
 camera.position.x = 12;
 
-camera.lookAt(10, 10, 10);
+//camera.lookAt(5, 5, 5);
 
 /* Renderer */
 const canvas = document.querySelector("#c") as HTMLCanvasElement;
@@ -47,6 +48,7 @@ const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
 document.body.appendChild(renderer.domElement);
 
 /* Orbitcontrols */
@@ -178,7 +180,7 @@ o2.position.x = 1.5;
 o2.position.y = 0.5;
 
 let m3 = new THREE.MeshStandardMaterial({
-  color: "yellow",
+  color: "blue",
   envMap: textureCube,
   metalness: 0,
   roughness: 0.1,
@@ -201,7 +203,7 @@ o3.position.x = 3;
 o3.position.y = 1;
 
 let m4 = new THREE.MeshStandardMaterial({
-  color: "purple",
+  color: "green",
   envMap: textureCube,
   metalness: 0,
   roughness: 0.1,
@@ -223,7 +225,7 @@ o4.position.x = 4.5;
 o4.position.y = 1.5;
 
 let m5 = new THREE.MeshStandardMaterial({
-  color: "red",
+  color: 0xffcd01,
   envMap: textureCube,
   metalness: 0,
   roughness: 0.1,
@@ -251,7 +253,7 @@ let m6 = new THREE.MeshStandardMaterial({
   roughness: 0.1,
 });
 let g6 = new THREE.ExtrudeGeometry(shape, {
-  depth: 7,
+  depth: 6,
   bevelEnabled: true,
   bevelThickness: 0.05,
   bevelSize: 0.05,
@@ -264,7 +266,29 @@ let o6 = new THREE.Mesh(g6, m6);
 scene.add(o6);
 o6.castShadow = true;
 o6.position.x = 7.5;
-o6.position.y = 3;
+o6.position.y = 2.5;
+
+let m7 = new THREE.MeshStandardMaterial({
+  color: "red",
+  envMap: textureCube,
+  metalness: 0,
+  roughness: 0.1,
+});
+let g7 = new THREE.ExtrudeGeometry(shape, {
+  depth: 8,
+  bevelEnabled: true,
+  bevelThickness: 0.05,
+  bevelSize: 0.05,
+  bevelSegments: 20,
+  curveSegments: 20,
+});
+g7.center();
+g7.rotateX(Math.PI * -0.5);
+let o7 = new THREE.Mesh(g7, m7);
+scene.add(o7);
+o7.castShadow = true;
+o7.position.x = 9;
+o7.position.y = 3.5;
 /*const cubes = [
   makeInstance(geometry, 0x44aa88, 0, "Aqua"),
   makeInstance(geometry, 0x8844aa, -2, "Purple"),

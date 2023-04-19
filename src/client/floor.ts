@@ -5,11 +5,11 @@ function initfloor(scene: THREE.Scene) {
   const planegeometry = new THREE.PlaneGeometry();
 
   const materialgray = new THREE.MeshStandardMaterial({
-    color: 0xf9f9f9, //Light
+    color: "white", //Light
     //color: 0x111111, //Dark
     wireframe: false,
-    metalness: 0.1,
-    roughness: 0.7,
+    metalness: 0.0,
+    roughness: 0.2,
   });
 
   const plane = new THREE.Mesh(planegeometry, materialgray);
