@@ -114,7 +114,7 @@ function makeInstance(geometry: any, color: any, x: any, name: any) {
 
 let shape = new THREE.Shape();
 let angleStep = Math.PI * 0.5;
-let radius = 0.1;
+let radius = 0.025;
 
 shape.absarc(0.5, 0.5, radius, angleStep * 0, angleStep * 1, false);
 shape.absarc(-0.5, 0.5, radius, angleStep * 1, angleStep * 2, false);
@@ -134,10 +134,10 @@ const textureCube = loader.load([
 ]);
 
 let g = new THREE.ExtrudeGeometry(shape, {
-  depth: 5,
+  depth: 1,
   bevelEnabled: true,
   bevelThickness: 0.05,
-  bevelSize: 0.05,
+  bevelSize: 0.005,
   bevelSegments: 20,
   curveSegments: 20,
 });
@@ -145,23 +145,37 @@ g.center();
 g.rotateX(Math.PI * -0.5);
 
 let m = new THREE.MeshStandardMaterial({
-  color: "green",
+  color: 0xf229f9, //
   envMap: textureCube,
   metalness: 0,
   roughness: 0.1,
 });
 let o = new THREE.Mesh(g, m);
+o.castShadow = true;
 scene.add(o);
 
+let g2 = new THREE.ExtrudeGeometry(shape, {
+  depth: 2,
+  bevelEnabled: true,
+  bevelThickness: 0.05,
+  bevelSize: 0.05,
+  bevelSegments: 20,
+  curveSegments: 20,
+});
+g2.center();
+g2.rotateX(Math.PI * -0.5);
+
 let m2 = new THREE.MeshStandardMaterial({
-  color: "blue",
+  color: 0x50e0ff,
   envMap: textureCube,
   metalness: 0,
   roughness: 0.1,
 });
-let o2 = new THREE.Mesh(g, m2);
+let o2 = new THREE.Mesh(g2, m2);
 scene.add(o2);
+o2.castShadow = true;
 o2.position.x = 1.5;
+o2.position.y = 0.5;
 
 let m3 = new THREE.MeshStandardMaterial({
   color: "yellow",
@@ -169,9 +183,22 @@ let m3 = new THREE.MeshStandardMaterial({
   metalness: 0,
   roughness: 0.1,
 });
-let o3 = new THREE.Mesh(g, m3);
+
+let g3 = new THREE.ExtrudeGeometry(shape, {
+  depth: 3,
+  bevelEnabled: true,
+  bevelThickness: 0.05,
+  bevelSize: 0.05,
+  bevelSegments: 20,
+  curveSegments: 20,
+});
+g3.center();
+g3.rotateX(Math.PI * -0.5);
+let o3 = new THREE.Mesh(g3, m3);
 scene.add(o3);
+o3.castShadow = true;
 o3.position.x = 3;
+o3.position.y = 1;
 
 let m4 = new THREE.MeshStandardMaterial({
   color: "purple",
@@ -179,9 +206,21 @@ let m4 = new THREE.MeshStandardMaterial({
   metalness: 0,
   roughness: 0.1,
 });
-let o4 = new THREE.Mesh(g, m4);
+let g4 = new THREE.ExtrudeGeometry(shape, {
+  depth: 4,
+  bevelEnabled: true,
+  bevelThickness: 0.05,
+  bevelSize: 0.05,
+  bevelSegments: 20,
+  curveSegments: 20,
+});
+g4.center();
+g4.rotateX(Math.PI * -0.5);
+let o4 = new THREE.Mesh(g4, m4);
+o4.castShadow = true;
 scene.add(o4);
 o4.position.x = 4.5;
+o4.position.y = 1.5;
 
 let m5 = new THREE.MeshStandardMaterial({
   color: "red",
@@ -189,9 +228,21 @@ let m5 = new THREE.MeshStandardMaterial({
   metalness: 0,
   roughness: 0.1,
 });
-let o5 = new THREE.Mesh(g, m5);
+let g5 = new THREE.ExtrudeGeometry(shape, {
+  depth: 5,
+  bevelEnabled: true,
+  bevelThickness: 0.05,
+  bevelSize: 0.05,
+  bevelSegments: 20,
+  curveSegments: 20,
+});
+g5.center();
+g5.rotateX(Math.PI * -0.5);
+let o5 = new THREE.Mesh(g5, m5);
 scene.add(o5);
+o5.castShadow = true;
 o5.position.x = 6;
+o5.position.y = 2;
 
 let m6 = new THREE.MeshStandardMaterial({
   color: "orange",
@@ -199,9 +250,21 @@ let m6 = new THREE.MeshStandardMaterial({
   metalness: 0,
   roughness: 0.1,
 });
-let o6 = new THREE.Mesh(g, m6);
+let g6 = new THREE.ExtrudeGeometry(shape, {
+  depth: 7,
+  bevelEnabled: true,
+  bevelThickness: 0.05,
+  bevelSize: 0.05,
+  bevelSegments: 20,
+  curveSegments: 20,
+});
+g6.center();
+g6.rotateX(Math.PI * -0.5);
+let o6 = new THREE.Mesh(g6, m6);
 scene.add(o6);
+o6.castShadow = true;
 o6.position.x = 7.5;
+o6.position.y = 3;
 /*const cubes = [
   makeInstance(geometry, 0x44aa88, 0, "Aqua"),
   makeInstance(geometry, 0x8844aa, -2, "Purple"),
@@ -234,7 +297,7 @@ for (let i = 0; i <= time; i++) {
 }
 
 //const data = [8, 9, 5, 3, 6, 6.0, 6.1, 5, 4, 2];
-let chart = initbarchart(scene, amountarray, -2);
+//let chart = initbarchart(scene, amountarray, -2);
 
 //console.log(compoundInterest(principal, time, rate, n));
 

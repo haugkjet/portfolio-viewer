@@ -5,7 +5,7 @@ function initfloor(scene: THREE.Scene) {
   const planegeometry = new THREE.PlaneGeometry();
 
   const materialgray = new THREE.MeshStandardMaterial({
-    color: 0xa9a9a9, //Light
+    color: 0xf9f9f9, //Light
     //color: 0x111111, //Dark
     wireframe: false,
     metalness: 0.1,
@@ -16,14 +16,13 @@ function initfloor(scene: THREE.Scene) {
 
   plane.receiveShadow = true;
 
-  //scene.add(plane);
+  scene.add(plane);
 
   plane.scale.x = 20;
   plane.scale.y = 20;
-  plane.scale.z = 20;
 
-  plane.position.x = 10;
-  plane.position.y = -0.1;
+  plane.position.x = 1;
+  plane.position.y = -0.55;
 
   plane.rotation.x = -1.5707;
   //return true;
