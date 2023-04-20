@@ -16,7 +16,7 @@ function initfloor(scene: THREE.Scene) {
 
   plane.receiveShadow = true;
 
-  scene.add(plane);
+  //scene.add(plane);
 
   plane.scale.x = 20;
   plane.scale.y = 20;

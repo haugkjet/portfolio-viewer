@@ -2,6 +2,7 @@ import * as THREE from "three";
 
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import { EXRLoader } from "three/examples/jsm/loaders/EXRLoader.js";
 
 import { initlight } from "./lights";
 import { initfont3d } from "./font3d";
@@ -41,6 +42,17 @@ camera.position.y = 2;
 camera.position.x = 12;
 
 //camera.lookAt(5, 5, 5);
+
+// Load hdr
+new EXRLoader().load(
+  "textures/forest.exr",
+  function (texture: any, textureData: any) {
+    texture.mapping = THREE.EquirectangularReflectionMapping;
+    scene.background = texture; // Use hdr as background
+    scene.environment = texture; // This do the lighting
+    render();
+  }
+);
 
 /* Renderer */
 const canvas = document.querySelector("#c") as HTMLCanvasElement;
