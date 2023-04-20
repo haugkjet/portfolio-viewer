@@ -24,7 +24,7 @@ const statsandhelpers = initstatsandhelpers(scene);
 const floor = initfloor(scene);
 
 //Light theme
-scene.background = new THREE.Color(0xdadada);
+scene.background = new THREE.Color(0xd9d9d9);
 
 //Dark theme
 //scene.background = new THREE.Color(0x222222);
@@ -45,10 +45,10 @@ camera.position.x = 12;
 
 // Load hdr
 new EXRLoader().load(
-  "textures/forest.exr",
+  "textures/belfast_farmhouse_1k.exr",
   function (texture: any, textureData: any) {
     texture.mapping = THREE.EquirectangularReflectionMapping;
-    scene.background = texture; // Use hdr as background
+    //scene.background = texture; // Use hdr as background
     scene.environment = texture; // This do the lighting
     render();
   }
@@ -59,6 +59,9 @@ const canvas = document.querySelector("#c") as HTMLCanvasElement;
 const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.shadowMap.enabled = true;
+renderer.outputEncoding = THREE.sRGBEncoding;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.5;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
 document.body.appendChild(renderer.domElement);
