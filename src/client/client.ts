@@ -37,9 +37,9 @@ const camera = new THREE.PerspectiveCamera(
   1000
 );
 
-camera.position.z = 9;
-camera.position.y = 2;
-camera.position.x = 12;
+camera.position.z = 11;
+camera.position.y = 4;
+camera.position.x = 13;
 
 //camera.lookAt(5, 5, 5);
 
@@ -63,6 +63,7 @@ renderer.outputEncoding = THREE.sRGBEncoding;
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.toneMappingExposure = 1.3;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+//renderer.shadowMap.type = THREE.VSMShadowMap;
 
 document.body.appendChild(renderer.domElement);
 
@@ -169,6 +170,7 @@ let m = new THREE.MeshStandardMaterial({
 });
 let o = new THREE.Mesh(g, m);
 o.castShadow = true;
+o.receiveShadow = true;
 scene.add(o);
 
 let g2 = new THREE.ExtrudeGeometry(shape, {
@@ -191,11 +193,12 @@ let m2 = new THREE.MeshStandardMaterial({
 let o2 = new THREE.Mesh(g2, m2);
 scene.add(o2);
 o2.castShadow = true;
+o2.receiveShadow = true;
 o2.position.x = 1.5;
 o2.position.y = 0.5;
 
 let m3 = new THREE.MeshStandardMaterial({
-  color: "blue",
+  color: 0x0096ff,
   envMap: textureCube,
   metalness: 0,
   roughness: 0.1,
@@ -214,6 +217,7 @@ g3.rotateX(Math.PI * -0.5);
 let o3 = new THREE.Mesh(g3, m3);
 scene.add(o3);
 o3.castShadow = true;
+o3.receiveShadow = true;
 o3.position.x = 3;
 o3.position.y = 1;
 
@@ -235,6 +239,7 @@ g4.center();
 g4.rotateX(Math.PI * -0.5);
 let o4 = new THREE.Mesh(g4, m4);
 o4.castShadow = true;
+o4.receiveShadow = true;
 scene.add(o4);
 o4.position.x = 4.5;
 o4.position.y = 1.5;
@@ -258,17 +263,18 @@ g5.rotateX(Math.PI * -0.5);
 let o5 = new THREE.Mesh(g5, m5);
 scene.add(o5);
 o5.castShadow = true;
+o5.receiveShadow = true;
 o5.position.x = 6;
 o5.position.y = 2;
 
 let m6 = new THREE.MeshStandardMaterial({
-  color: "orange",
+  color: 0xf28c28,
   envMap: textureCube,
   metalness: 0,
   roughness: 0.1,
 });
 let g6 = new THREE.ExtrudeGeometry(shape, {
-  depth: 6,
+  depth: 4,
   bevelEnabled: true,
   bevelThickness: 0.05,
   bevelSize: 0.05,
@@ -280,8 +286,9 @@ g6.rotateX(Math.PI * -0.5);
 let o6 = new THREE.Mesh(g6, m6);
 scene.add(o6);
 o6.castShadow = true;
+o6.receiveShadow = true;
 o6.position.x = 7.5;
-o6.position.y = 2.5;
+o6.position.y = 1.5;
 
 let m7 = new THREE.MeshStandardMaterial({
   color: "red",
@@ -290,7 +297,7 @@ let m7 = new THREE.MeshStandardMaterial({
   roughness: 0.1,
 });
 let g7 = new THREE.ExtrudeGeometry(shape, {
-  depth: 8,
+  depth: 4,
   bevelEnabled: true,
   bevelThickness: 0.05,
   bevelSize: 0.05,
@@ -302,8 +309,9 @@ g7.rotateX(Math.PI * -0.5);
 let o7 = new THREE.Mesh(g7, m7);
 scene.add(o7);
 o7.castShadow = true;
+o7.receiveShadow = true;
 o7.position.x = 9;
-o7.position.y = 3.5;
+o7.position.y = 1.5;
 /*const cubes = [
   makeInstance(geometry, 0x44aa88, 0, "Aqua"),
   makeInstance(geometry, 0x8844aa, -2, "Purple"),
