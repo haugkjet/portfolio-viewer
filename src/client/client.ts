@@ -31,7 +31,7 @@ scene.background = new THREE.Color(0xd9d9d9);
 
 /* Camera */
 const camera = new THREE.PerspectiveCamera(
-  75,
+  50,
   window.innerWidth / window.innerHeight,
   0.1,
   1000
@@ -61,7 +61,7 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.shadowMap.enabled = true;
 renderer.outputEncoding = THREE.sRGBEncoding;
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure = 1.5;
+renderer.toneMappingExposure = 1.3;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
 document.body.appendChild(renderer.domElement);
@@ -154,7 +154,7 @@ let g = new THREE.ExtrudeGeometry(shape, {
   depth: 1,
   bevelEnabled: true,
   bevelThickness: 0.05,
-  bevelSize: 0.005,
+  bevelSize: 0.05,
   bevelSegments: 20,
   curveSegments: 20,
 });

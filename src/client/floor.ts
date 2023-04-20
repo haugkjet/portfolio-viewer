@@ -8,8 +8,8 @@ function initfloor(scene: THREE.Scene) {
     color: "white", //Light
     //color: 0x111111, //Dark
     wireframe: false,
-    metalness: 0.0,
-    roughness: 0.2,
+    metalness: 0.2,
+    roughness: 0.1,
   });
 
   const plane = new THREE.Mesh(planegeometry, materialgray);
@@ -18,10 +18,10 @@ function initfloor(scene: THREE.Scene) {
 
   scene.add(plane);
 
-  plane.scale.x = 50;
-  plane.scale.y = 20;
+  plane.scale.x = 20;
+  plane.scale.y = 10;
 
-  plane.position.x = 1;
+  plane.position.x = 3;
   plane.position.y = -0.55;
 
   plane.rotation.x = -1.5707;
