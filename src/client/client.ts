@@ -38,8 +38,8 @@ const camera = new THREE.PerspectiveCamera(
 );
 
 camera.position.z = 11;
-camera.position.y = 4;
-camera.position.x = 13;
+camera.position.y = 6;
+camera.position.x = 14;
 
 //camera.lookAt(5, 5, 5);
 
@@ -59,9 +59,10 @@ const canvas = document.querySelector("#c") as HTMLCanvasElement;
 const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.shadowMap.enabled = true;
+
 renderer.outputEncoding = THREE.sRGBEncoding;
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure = 1.3;
+renderer.toneMappingExposure = 1.5;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 //renderer.shadowMap.type = THREE.VSMShadowMap;
 
@@ -312,6 +313,31 @@ o7.castShadow = true;
 o7.receiveShadow = true;
 o7.position.x = 9;
 o7.position.y = 1.5;
+
+/*let m8 = new THREE.MeshStandardMaterial({
+  color: "red",
+  envMap: textureCube,
+  metalness: 0,
+  roughness: 0.1,
+});
+let g8 = new THREE.ExtrudeGeometry(shape, {
+  depth: 4,
+  bevelEnabled: true,
+  bevelThickness: 0.05,
+  bevelSize: 0.05,
+  bevelSegments: 20,
+  curveSegments: 20,
+});
+g8.center();
+g8.rotateX(Math.PI * -0.5);
+let o8 = new THREE.Mesh(g8, m8);
+scene.add(o8);
+o8.castShadow = true;
+o8.receiveShadow = true;
+o8.position.x = 5;
+o8.position.y = 1.5;
+o8.position.z = -5;*/
+
 /*const cubes = [
   makeInstance(geometry, 0x44aa88, 0, "Aqua"),
   makeInstance(geometry, 0x8844aa, -2, "Purple"),

@@ -21,7 +21,7 @@ function initlight(scene: THREE.Scene) {
   scene.add(light2);
 
   const light3 = new THREE.PointLight(0xffffff, 0.2, 100);
-  light3.position.set(14, 7, 1);
+  light3.position.set(9, 7, 1);
   light3.castShadow = true; // default false
   light3.shadow.bias = -0.00003;
   light3.shadow.mapSize.width = 2048;
