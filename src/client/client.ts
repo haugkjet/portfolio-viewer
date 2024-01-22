@@ -167,17 +167,74 @@ g.center();
 g.rotateX(Math.PI * -0.5);
 
 let m = new THREE.MeshStandardMaterial({
-  color: 0xf229f9, //
+  color: 0xd9d9d9, //
   envMap: textureCube,
-  metalness: 0,
+  metalness: 0.9,
   roughness: 0.1,
   transparent: true,
   opacity: 0.4, // Set opacity value (0.0 to 1.0)
+  side: THREE.DoubleSide,
 });
 let o = new THREE.Mesh(g, m);
 o.castShadow = true;
 o.receiveShadow = true;
 scene.add(o);
+
+let g11 = new THREE.ExtrudeGeometry(shape, {
+  depth: 0.2,
+  bevelEnabled: false,
+  bevelThickness: 0.05,
+  bevelSize: 0.05,
+  bevelSegments: 20,
+  curveSegments: 20,
+});
+
+g11.rotateX(Math.PI * -0.5);
+
+let m11 = new THREE.MeshStandardMaterial({
+  color: "green", //
+  envMap: textureCube,
+  metalness: 0,
+  roughness: 0.1,
+  transparent: false,
+  opacity: 0.4, // Set opacity value (0.0 to 1.0)
+});
+let o11 = new THREE.Mesh(g11, m11);
+scene.add(o11);
+
+o11.scale.x = 0.1;
+o11.scale.z = 0.1;
+
+o11.position.y = -0.5;
+o11.position.x = -0.4;
+
+let g12 = new THREE.ExtrudeGeometry(shape, {
+  depth: 0.7,
+  bevelEnabled: false,
+  bevelThickness: 0.05,
+  bevelSize: 0.05,
+  bevelSegments: 20,
+  curveSegments: 20,
+});
+
+g12.rotateX(Math.PI * -0.5);
+
+let m12 = new THREE.MeshStandardMaterial({
+  color: "blue", //
+  envMap: textureCube,
+  metalness: 0,
+  roughness: 0.1,
+  transparent: false,
+  opacity: 0.4, // Set opacity value (0.0 to 1.0)
+});
+let o12 = new THREE.Mesh(g12, m12);
+scene.add(o12);
+
+o12.scale.x = 0.1;
+o12.scale.z = 0.1;
+
+o12.position.y = -0.5;
+o12.position.x = -0.2;
 
 let g2 = new THREE.ExtrudeGeometry(shape, {
   depth: 2,
@@ -193,8 +250,10 @@ g2.rotateX(Math.PI * -0.5);
 let m2 = new THREE.MeshStandardMaterial({
   color: 0x50e0ff,
   envMap: textureCube,
-  metalness: 0,
+  metalness: 0.9,
   roughness: 0.1,
+  transparent: true,
+  opacity: 0.4, // Set opacity value (0.0 to 1.0)
 });
 let o2 = new THREE.Mesh(g2, m2);
 scene.add(o2);
@@ -206,8 +265,10 @@ o2.position.y = 0.5;
 let m3 = new THREE.MeshStandardMaterial({
   color: 0x0096ff,
   envMap: textureCube,
-  metalness: 0,
+  metalness: 0.9,
   roughness: 0.1,
+  transparent: true,
+  opacity: 0.4, // Set opacity value (0.0 to 1.0)
 });
 
 let g3 = new THREE.ExtrudeGeometry(shape, {
@@ -230,8 +291,10 @@ o3.position.y = 1;
 let m4 = new THREE.MeshStandardMaterial({
   color: "green",
   envMap: textureCube,
-  metalness: 0,
+  metalness: 0.9,
   roughness: 0.1,
+  transparent: true,
+  opacity: 0.4, // Set opacity value (0.0 to 1.0)
 });
 let g4 = new THREE.ExtrudeGeometry(shape, {
   depth: 4,
@@ -253,8 +316,10 @@ o4.position.y = 1.5;
 let m5 = new THREE.MeshStandardMaterial({
   color: 0xffcd01,
   envMap: textureCube,
-  metalness: 0,
+  metalness: 0.9,
   roughness: 0.1,
+  transparent: true,
+  opacity: 0.4, // Set opacity value (0.0 to 1.0)
 });
 let g5 = new THREE.ExtrudeGeometry(shape, {
   depth: 5,
@@ -276,8 +341,10 @@ o5.position.y = 2;
 let m6 = new THREE.MeshStandardMaterial({
   color: 0xf28c28,
   envMap: textureCube,
-  metalness: 0,
+  metalness: 0.9,
   roughness: 0.1,
+  transparent: true,
+  opacity: 0.4, // Set opacity value (0.0 to 1.0)
 });
 let g6 = new THREE.ExtrudeGeometry(shape, {
   depth: 4,
@@ -299,8 +366,10 @@ o6.position.y = 1.5;
 let m7 = new THREE.MeshStandardMaterial({
   color: "red",
   envMap: textureCube,
-  metalness: 0,
+  metalness: 0.9,
   roughness: 0.1,
+  transparent: true,
+  opacity: 0.4, // Set opacity value (0.0 to 1.0)
 });
 let g7 = new THREE.ExtrudeGeometry(shape, {
   depth: 4,
