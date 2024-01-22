@@ -171,6 +171,8 @@ let m = new THREE.MeshStandardMaterial({
   envMap: textureCube,
   metalness: 0,
   roughness: 0.1,
+  transparent: true,
+  opacity: 0.4, // Set opacity value (0.0 to 1.0)
 });
 let o = new THREE.Mesh(g, m);
 o.castShadow = true;
@@ -353,10 +355,12 @@ o8.position.z = -5;*/
 // Create a cylinder geometry to represent the thick line
 const cylinderGeometry = new THREE.CylinderBufferGeometry(0.1, 0.1, 10, 8);
 const cylinderMaterial = new THREE.MeshStandardMaterial({
-  color: "green",
+  color: "black",
   envMap: textureCube,
-  metalness: 0,
+  metalness: 0.95,
   roughness: 0.1,
+  transparent: true,
+  opacity: 0.4, // Set opacity value (0.0 to 1.0)
 });
 const cylinderMesh = new THREE.Mesh(cylinderGeometry, cylinderMaterial);
 
@@ -375,6 +379,8 @@ const cylinderMaterial2 = new THREE.MeshStandardMaterial({
   envMap: textureCube,
   metalness: 0,
   roughness: 0.1,
+  transparent: true,
+  opacity: 0.3, // Set opacity value (0.0 to 1.0)
 });
 const cylinderMesh2 = new THREE.Mesh(cylinderGeometry2, cylinderMaterial2);
 

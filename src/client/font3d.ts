@@ -25,13 +25,13 @@ function initfont3d(scene: THREE.Scene) {
       const geometry2 = new TextGeometry(words[i], {
         font: font,
         size: 0.3 * i * 0.5,
-        height: 0.01,
+        height: 0.02,
         curveSegments: 12,
         bevelEnabled: false,
       });
       const textMaterial = new THREE.MeshStandardMaterial({
-        //color: 0x000000, //Black
-        color: 0xffffff,
+        color: 0xd9d9d9, //Black
+        //color: 0xffffff,
       }); //Light });
 
       var mesh = new THREE.Mesh(geometry2, textMaterial);
@@ -41,9 +41,11 @@ function initfont3d(scene: THREE.Scene) {
       //const material = new THREE.MeshPhongMaterial({ color: 0xabcde });
 
       const material = new THREE.MeshStandardMaterial({
-        color: "green",
-        metalness: 0,
+        color: "white",
+        metalness: 0.95,
         roughness: 0.1,
+        transparent: true,
+        opacity: 0.5, // Set opacity value (0.0 to 1.0)
       });
 
       let g = new THREE.ExtrudeGeometry(shape, {
@@ -61,6 +63,8 @@ function initfont3d(scene: THREE.Scene) {
         color: 0xf229f9, //
         metalness: 0,
         roughness: 0.1,
+        transparent: true,
+        opacity: 0.1, // Set opacity value (0.0 to 1.0)
       });
       let o = new THREE.Mesh(g, m);
       o.castShadow = true;
