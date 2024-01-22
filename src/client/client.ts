@@ -461,6 +461,63 @@ cylinderMesh2.position.y = 4.6;
 
 cylinderMesh2.rotateZ(1.2);
 
+// Define control points for the cubic Bezier curve
+const controlPoint1 = new THREE.Vector3(0, 0, 0);
+const controlPoint2 = new THREE.Vector3(5, 5, 0);
+const controlPoint3 = new THREE.Vector3(4, 8, 0);
+const controlPoint4 = new THREE.Vector3(8, 5, 0);
+
+// Create a CubicBezierCurve3
+const curve = new THREE.CubicBezierCurve3(
+  controlPoint1,
+  controlPoint2,
+  controlPoint3,
+  controlPoint4
+);
+
+// Get points along the curve
+const points = curve.getPoints(200);
+
+// Create cylinders along the smoothed curve
+const cylinderRadius = 0.05;
+const cylinderHeight = 0.1;
+
+points.forEach((point) => {
+  // Create a cylinder geometry
+  const cylinderGeometry = new THREE.CylinderGeometry(
+    cylinderRadius,
+    cylinderRadius,
+    cylinderHeight,
+    8
+  );
+
+  // Create a material
+  const cylinderMaterial = new THREE.MeshStandardMaterial({
+    color: "red",
+    envMap: textureCube,
+    metalness: 0,
+    roughness: 0.1,
+    transparent: false,
+    opacity: 0.3, // Set opacity value (0.0 to 1.0)
+  });
+
+  // Create a cylinder mesh
+  const cylinderMesh = new THREE.Mesh(cylinderGeometry, cylinderMaterial);
+
+  // Set the position of the cylinder
+  cylinderMesh.position.copy(point);
+
+  // Orient the cylinder along the tangent of the curve at the current point
+  const tangent = curve.getTangentAt(points.indexOf(point) / 200).normalize();
+  cylinderMesh.quaternion.setFromUnitVectors(
+    new THREE.Vector3(0, 1, 0),
+    tangent
+  );
+
+  // Add the cylinder to the scene
+  scene.add(cylinderMesh);
+});
+
 // Create text geometry
 
 //CI = P*(1 + R/n) (nt) – P
