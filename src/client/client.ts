@@ -6,10 +6,13 @@ import { EXRLoader } from "three/examples/jsm/loaders/EXRLoader.js";
 
 import { initlight } from "./lights";
 import { initfont3d } from "./font3d";
-import { initbillboardtext } from "./billboardtext";
-import { initgui2d } from "./gui2d";
+//import { initbillboardtext } from "./billboardtext";
+//import { initgui2d } from "./gui2d";
 import { initfloor } from "./floor";
-import { initbarchart } from "./barchart";
+//import { initbarchart } from "./barchart";
+
+import { FontLoader } from "three/examples/jsm/loaders/FontLoader.js";
+import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry.js";
 
 import { initstatsandhelpers } from "./statsandhelpers";
 import Stats from "three/examples/jsm/libs/stats.module";
@@ -17,7 +20,7 @@ import Stats from "three/examples/jsm/libs/stats.module";
 const scene = new THREE.Scene();
 
 const lights = initlight(scene);
-//const font3d = initfont3d(scene);
+const font3d = initfont3d(scene);
 //const billboard = initbillboardtext(scene);
 //const gui2d = initgui2d();
 const statsandhelpers = initstatsandhelpers(scene);
@@ -382,6 +385,8 @@ cylinderMesh2.position.x = 8.3;
 cylinderMesh2.position.y = 4.6;
 
 cylinderMesh2.rotateZ(1.2);
+
+// Create text geometry
 
 //CI = P*(1 + R/n) (nt) – P
 const principal = 2; //staring capital
