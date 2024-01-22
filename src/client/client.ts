@@ -344,6 +344,45 @@ o8.position.z = -5;*/
   makeInstance(geometry, 0xaa8844, 2, "Gold"),
 ];*/
 
+//create a blue LineBasicMaterial
+//const material = new THREE.LineBasicMaterial({ color: 0x0000ff });
+
+// Create a cylinder geometry to represent the thick line
+const cylinderGeometry = new THREE.CylinderBufferGeometry(0.1, 0.1, 10, 8);
+const cylinderMaterial = new THREE.MeshStandardMaterial({
+  color: "green",
+  envMap: textureCube,
+  metalness: 0,
+  roughness: 0.1,
+});
+const cylinderMesh = new THREE.Mesh(cylinderGeometry, cylinderMaterial);
+
+// Add the cylinder to the scene
+scene.add(cylinderMesh);
+
+cylinderMesh.position.x = 1;
+cylinderMesh.position.y = 3;
+
+cylinderMesh.rotateZ(-0.98);
+
+// Create a cylinder geometry to represent the thick line
+const cylinderGeometry2 = new THREE.CylinderBufferGeometry(0.1, 0.1, 7, 8);
+const cylinderMaterial2 = new THREE.MeshStandardMaterial({
+  color: "red",
+  envMap: textureCube,
+  metalness: 0,
+  roughness: 0.1,
+});
+const cylinderMesh2 = new THREE.Mesh(cylinderGeometry2, cylinderMaterial2);
+
+// Add the cylinder to the scene
+scene.add(cylinderMesh2);
+
+cylinderMesh2.position.x = 8.3;
+cylinderMesh2.position.y = 4.6;
+
+cylinderMesh2.rotateZ(1.2);
+
 //CI = P*(1 + R/n) (nt) – P
 const principal = 2; //staring capital
 const time = 12; // years
